@@ -3,6 +3,7 @@
 namespace App\Http\Controllers;
 
 use App\Dance;
+use Illuminate\Support\Facades\Auth;
 use Illuminate\Http\Request;
 
 class DanceController extends Controller
@@ -13,6 +14,12 @@ class DanceController extends Controller
 
           return view('dance.dance',compact('dances'));
         
+    }
+
+    public function mypage()
+    {
+        $auth = Auth::user();
+        return view('dance.mypage',['auth' => $auth]);
     }
 
 }

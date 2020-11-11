@@ -21,4 +21,8 @@ Auth::routes();
 
 Route::get('/home', 'HomeController@index')->name('home');
 Route::get('/','DanceController@index')->name('dance');
+Route::group(['middleware' => 'auth'], function(){
+    Route::get('/mypage/{id}','DanceController@mypage')->name('mypage');
+});
+
 

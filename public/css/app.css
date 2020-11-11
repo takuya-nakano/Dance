@@ -4525,6 +4525,12 @@ input[type=button].btn-block {
   line-height: inherit;
   white-space: nowrap;
 }
+.mypage{
+  text-align: center;
+}
+.mypagein{
+  text-align: center;
+}
 
 .navbar-brand:hover,
 .navbar-brand:focus {
