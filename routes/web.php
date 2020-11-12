@@ -22,7 +22,11 @@ Auth::routes();
 Route::get('/home', 'HomeController@index')->name('home');
 Route::get('/','DanceController@index')->name('dance');
 Route::group(['middleware' => 'auth'], function(){
-    Route::get('/mypage/{id}','DanceController@mypage')->name('mypage');
+  Route::get('/mypage/{id}','DanceController@mypage')->name('mypage');
 });
-
+//投稿ページ
+Route::group(['middleware' => 'auth'], function(){ 
+  Route::get('/create','DanceController@createform')->name('form');
+  Route::post('/create','DanceController@create');
+});
 

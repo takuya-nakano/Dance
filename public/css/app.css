@@ -3571,6 +3571,22 @@ input[type=button].btn-block {
   border-top: 1px solid #e9ecef;
 }
 
+.start{
+  text-align: center;
+  color: black;
+}
+
+.btn--orange,
+a.btn--orange {
+  color: #fff;
+  background-color: #eb6100;
+}
+.btn--orange:hover,
+a.btn--orange:hover {
+  color: #fff;
+  background: #f56500;
+}
+
 .dropdown-item {
   display: block;
   width: 100%;

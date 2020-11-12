@@ -24,8 +24,9 @@
         <nav class="navbar navbar-expand-md navbar-light bg-white shadow-sm">
             <div class="container">
                 <a class="navbar-brand" href="{{ url('/') }}">
-                    <p>ダンス投稿サイト</p>
+                    <p>ダンス投稿サイト <span>D☆Feel</span></p>
                 </a>
+                
                 
                 <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarSupportedContent" aria-controls="navbarSupportedContent" aria-expanded="false" aria-label="{{ __('Toggle navigation') }}">
                     <span class="navbar-toggler-icon"></span>
@@ -37,6 +38,9 @@
 
                     </ul>
 
+                    <div class="start">
+                    <a href="{{ route('form') }}" class="btn btn--orange">ダンスを投稿する</a>
+                    </div>
                     <!-- Right Side Of Navbar -->
                     <ul class="navbar-nav ml-auto">
                         <!-- Authentication Links -->

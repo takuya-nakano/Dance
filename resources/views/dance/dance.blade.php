@@ -5,11 +5,11 @@
 
 
 @foreach($dances as $dance)
-<a href="{{ route('dance.show' , $dance->id )}}">
+
 <!--動画表示について書く-->
 <p>{{$dance->title}}</p>
 <p>{{$dance->genre}}</p>
-</a>
+
 @endforeach
 
 
