@@ -32,5 +32,6 @@ Route::group(['middleware' => 'auth'], function(){
 //詳細画面
 Route::get('/show/{id}','DanceController@show')->name('show');
 //コメント
+Route::group(['middleware' => 'auth'], function(){ 
 Route::post('/comments','CommentController@store');
-
+});

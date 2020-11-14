@@ -45,19 +45,19 @@ class DanceController extends Controller
                 'title.required' => 'タイトルは必須です。',
                 'title.max' => 'タイトルは20文字以下です。',
                 'genre.required' => 'ジャンルは必須です。',
-                'movie.required' => '動画を選択してください。',
-    
+                'movie.required' => '動画URLを貼り付けてください。(youtubeの共有ボタンから”https://youtu.be/”以降の文字をコピーしてください。)',
             ]
         );
             $dance = new Dance();
-            //登録ユーザーからidを取得
-            $dance->user_id = Auth::user()->id; 
+            $dance->user_id = Auth::user()->id; //登録ユーザーからidを取得
             $dance->title = $request->title;
             $dance->subtitle = $request->subtitle;
             $dance->movie = $request->movie;
             $dance->genre = $request->genre;
-            // インスタンスの状態をデータベースに書き込む
-            $dance->save();
+            $filename = $request->file('thumbnail')->store('public'); // publicフォルダに保存
+            $dance->thumbnail = str_replace('public/','',$filename);// 保存するファイル名からpublicを除外
+            
+            $dance->save();// インスタンスの状態をデータベースに書き込む
             return redirect()->route('dance');
     
     }
@@ -69,8 +69,8 @@ class DanceController extends Controller
         //データベースから情報を持ってくる
         $comments = $dance->comments()->orderby('created_at' , 'desc')->get();
         //dd($comments);
-        //compact()で上で定義した$commentsの内容をviewさせる
-        return view ('dance.show', compact('dance','comments'));
+        
+        return view ('dance.show', compact('dance','comments'));//compact()で上で定義した$commentsの内容をviewさせる
     }
 
 

@@ -3,7 +3,10 @@
 @section('content')
 <div class=dai_box>
     <div class=dai>
-       <h1>みんなでダンスをシェアしよう！</h1>
+       <h1>みんなで"YABAI"ダンスをシェアしよう！</h1>
+       <div class="yabai">
+         <a href="">”YABAI”の楽しみ方</a>
+       </div>
     </div>
 </div>
 
@@ -11,9 +14,9 @@
 @foreach($dances as $dance)
 <a href="{{ route('show' , $dance->id )}}">
 <div class=box>
-   <div class=movie_box>
-      <div class=movie>
-         <!--動画表示について書く-->
+   <div class=thumbnail_box>
+      <div class=thumbnail>
+      <p><img src="{{ asset('/storage/'.$dance->thumbnail)}}"></p>
       </div> 
    </div>
    <div class=genre>

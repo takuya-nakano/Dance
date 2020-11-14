@@ -8,10 +8,12 @@
 </div>
 <div class=show_movie_box>
     <div class=show_movie>
-        <!--動画について記述-->
+    <iframe width="700" height="500" src="https://www.youtube.com/embed/{{$dance->movie}}" 
+    frameborder="0" allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture" allowfullscreen></iframe>
     </div>
 </div>
 <div class=show_box>
+    <p>リンク:<a href="https://youtu.be/{{$dance->movie}}" target="_blank">『{{$dance->title}}』のyoutubeはこちら</a></p>
 <div class=show_genre>
     <p>ジャンル:{{$dance->genre}}</p>
 </div>

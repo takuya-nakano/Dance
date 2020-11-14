@@ -26,7 +26,7 @@
         <nav class="navbar navbar-expand-md navbar-light bg-white shadow-sm">
             <div class="container">
                 <a class="navbar-brand" href="{{ url('/') }}">
-                    <p>ダンスで繋がる　D☆Net</p>
+                    <p>ダンスで繋がる　"YABAI"</p>
                 </a>
                 
                 
@@ -41,8 +41,9 @@
                     </ul>
 
                     <div class="start">
-                    <a href="{{ route('form') }}" class="btn btn--orange">ダンスを投稿する</a>
+                    <a href="{{ route('form') }}" class="btn btn--orange">ダンスをシェアする</a>
                     </div>
+                    
                     <!-- Right Side Of Navbar -->
                     <ul class="navbar-nav ml-auto">
                         <!-- Authentication Links -->
