@@ -17,14 +17,16 @@
     <link href="https://fonts.googleapis.com/css?family=Nunito" rel="stylesheet">
 
     <!-- Styles -->
+    <link href="{{ asset('css/dance.css') }}" rel="stylesheet">
     <link href="{{ asset('css/app.css') }}" rel="stylesheet">
+    
 </head>
 <body>
     <div id="app">
         <nav class="navbar navbar-expand-md navbar-light bg-white shadow-sm">
             <div class="container">
                 <a class="navbar-brand" href="{{ url('/') }}">
-                    <p>ダンス投稿サイト <span>D☆Feel</span></p>
+                    <p>ダンスで繋がる　D☆Net</p>
                 </a>
                 
                 

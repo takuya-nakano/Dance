@@ -1,15 +1,29 @@
 @extends('layouts.app')
 
 @section('content')
-<h1>動画一覧</h1>
+<div class=dai_box>
+    <div class=dai>
+       <h1>みんなでダンスをシェアしよう！</h1>
+    </div>
+</div>
 
 
 @foreach($dances as $dance)
-
-<!--動画表示について書く-->
-<p>{{$dance->title}}</p>
-<p>{{$dance->genre}}</p>
-
+<a href="{{ route('show' , $dance->id )}}">
+<div class=box>
+   <div class=movie_box>
+      <div class=movie>
+         <!--動画表示について書く-->
+      </div> 
+   </div>
+   <div class=genre>
+      <p>ジャンル:{{$dance->genre}}</p>
+   </div>
+   <div class=title>
+      <p>{{$dance->title}}</p>
+   </div>
+</div>
+</a>
 @endforeach
 
 

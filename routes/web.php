@@ -29,4 +29,8 @@ Route::group(['middleware' => 'auth'], function(){
   Route::get('/create','DanceController@createform')->name('form');
   Route::post('/create','DanceController@create');
 });
+//詳細画面
+Route::get('/show/{id}','DanceController@show')->name('show');
+//コメント
+Route::post('/comments','CommentController@store');
 
