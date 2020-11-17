@@ -19,14 +19,14 @@
 @csrf
 　
   <label for="title">タイトル*</label>
-  <input name="title" value="{{ old('title') }}"><br>
+  <input name="title" placeholder="タイトルを入力して下さい。" value="{{ old('title') }}"><br>
   <label for="genre">ジャンル*</label>
-  <input name="genre" value="{{ old('genre') }}"><br>
+  <input name="genre" placeholder="ジャンルを入力して下さい。" value="{{ old('genre') }}"><br>
   <label for="movie">動画URL*</label>
-  <input name="movie"><br>
+  <input name="movie"placeholder="動画URLを入力して下さい。" ><br>
   <p>動画URLはyoutubeの共有ボタンから”https://youtu.be/”以降の文字をコピーし貼り付けてください。</p><br>
   <label for="subtitle">説明</label>
-  <textarea name="subtitle" cols="50" rows="10" value="{{ old('subtitle') }}"></textarea><br>
+  <textarea name="subtitle" cols="50" rows="10" placeholder="説明"　value="{{ old('subtitle') }}"></textarea><br>
   <label for="thumbnail">サムネイル画像</label>
   <input name="thumbnail" type="file"><br>
   

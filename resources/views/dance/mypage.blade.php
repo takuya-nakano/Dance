@@ -13,6 +13,7 @@
 <div class=home>
 <a href="{{ route('dance') }}" class="btn btn--orange">ホームへ戻る</a>
 </div>
+
 </div>
 
 

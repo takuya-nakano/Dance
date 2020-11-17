@@ -3,6 +3,7 @@
 namespace App;
 
 use Illuminate\Database\Eloquent\Model;
+use Illuminate\Support\Facades\Auth;
 
 class Dance extends Model
 {
@@ -12,4 +13,6 @@ class Dance extends Model
     {
         return $this->hasMany(Comment::class);
     }
-}
+
+    
+}  

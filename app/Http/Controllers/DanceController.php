@@ -73,5 +73,47 @@ class DanceController extends Controller
         return view ('dance.show', compact('dance','comments'));//compact()で上で定義した$commentsの内容をviewさせる
     }
 
+    //編集画面
+    public function edit ($id){
+        $dance = Dance::find($id);
+        return view ('dance.edit',compact('dance'));
+    }
 
+    public function update(Request $request,$id)
+    {
+        $this->validate(
+            $request,
+            [
+                'title' => 'required|max:20',
+                'genre' => 'required',
+                'movie' => 'required',
+    
+            ],
+            [
+                'title.required' => 'タイトルは必須です。',
+                'title.max' => 'タイトルは20文字以下です。',
+                'genre.required' => 'ジャンルは必須です。',
+                'movie.required' => '動画URLを貼り付けてください。(youtubeの共有ボタンから”https://youtu.be/”以降の文字をコピーしてください。)',
+            ]
+        );
+            $dance = Dance::find($id);
+            
+            $dance->title = $request->title;
+            $dance->subtitle = $request->subtitle;
+            $dance->movie = $request->movie;
+            $dance->genre = $request->genre;
+            /*$filename = $request->file('thumbnail')->store('public'); // publicフォルダに保存
+            $dance->thumbnail = str_replace('public/','',$filename);// 保存するファイル名からpublicを除外*/
+            
+            $dance->save();// インスタンスの状態をデータベースに書き込む
+            return redirect()->route('dance');
+    
+    }
+
+    public function delete($id)
+    {
+            $dance = Dance::find($id);
+            $dance->delete();
+            return redirect()->route('dance');
+    }
 }

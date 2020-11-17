@@ -31,7 +31,12 @@ Route::group(['middleware' => 'auth'], function(){
 });
 //詳細画面
 Route::get('/show/{id}','DanceController@show')->name('show');
+Route::get('/show/{id}/edit', 'DanceController@edit')->name('dance.edit');
+Route::PATCH('/show/{id}','DanceController@update')->name('dance.update');//投稿内容更新
+Route::delete('/show/{id}','DanceController@delete')->name('dance.destroy');//削除
 //コメント
 Route::group(['middleware' => 'auth'], function(){ 
 Route::post('/comments','CommentController@store');
 });
+//いいね
+

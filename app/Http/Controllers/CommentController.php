@@ -3,6 +3,7 @@
 namespace App\Http\Controllers;
 
 use Illuminate\Http\Request;
+use Illuminate\Support\Facades\Auth;
 use App\Comment;
 
 class CommentController extends Controller
@@ -26,6 +27,7 @@ class CommentController extends Controller
         
         $comment->body = $request->body;
         $comment->dance_id = $request->dance_id;
+        $comment->user_id = Auth::user()->id;
 
         $comment->save();
 
