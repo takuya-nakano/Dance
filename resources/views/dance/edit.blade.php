@@ -14,7 +14,7 @@
     @endif
     
 <div class=create>
-<form action="{{ route('dance.update' ,$dance->id)}}" method="POST"  >
+<form action="{{ route('dance.update' ,$dance->id)}}" method="POST" enctype="multipart/form-data" >
 <p>*がついているものは必須項目です。</p>
 @csrf
 {{ method_field('patch') }}
@@ -27,8 +27,8 @@
   <p>動画URLはyoutubeの共有ボタンから”https://youtu.be/”以降の文字をコピーし貼り付けてください。</p><br>
   <label for="subtitle">説明</label>
   <textarea name="subtitle" cols="50" rows="10" value="{{ $dance->subtitle }}"></textarea><br>
-  <!--<label for="thumbnail">サムネイル画像</label>
-  <input name="thumbnail" type="file"><br>-->
+  <label for="thumbnail">サムネイル画像*</label>
+  <input name="thumbnail" type="file" value="{{ $dance->thumbnail }}"><br>
   
   <div class=button>
      <input type="submit" value="更新する"　onclick="return confirm('更新してよろしいですか？')">

@@ -22,7 +22,7 @@ class CommentController extends Controller
             ]
             );
         
-
+        
         $comment = new Comment;
         
         $comment->body = $request->body;
@@ -34,4 +34,6 @@ class CommentController extends Controller
         return redirect()-> back();
     
     }
+
+    
 }

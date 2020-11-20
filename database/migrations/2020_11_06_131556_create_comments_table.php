@@ -18,6 +18,9 @@ class CreateCommentsTable extends Migration
             $table->foreignID('dance_id');
             $table->text('body');
             $table->timestamps();
+
+            $table->foreign('user_id')->references('id')->on('users')->onDelete('cascade');
+            $table->foreign('dance_id')->references('id')->on('dances')->onDelete('cascade');
         });
     }
 

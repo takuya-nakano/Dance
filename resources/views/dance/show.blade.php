@@ -15,12 +15,14 @@
 </div>
 
 <div class=show_box>
-    <p>リンク:<a href="https://youtu.be/{{$dance->movie}}" target="_blank">『{{$dance->title}}』をyoutubeで開く</a></p>
+    リンク:<a href="https://youtu.be/{{$dance->movie}}" target="_blank">『{{$dance->title}}』をyoutubeで開く</a></>
 <div class=show_genre>
     <p>ジャンル:{{$dance->genre}}</p>
 </div>
 <div class=show_subtitle>
+    @if( $dance->subtitle !== null)
     <p>説明:{!! nl2br(e($dance->subtitle)) !!}</p>
+    @endif
 </div>
 <div class=show_day>
     <p>投稿日:{{$dance->created_at}}</p>
@@ -36,11 +38,12 @@
 <form action="{{ route('dance.destroy' , $dance->id) }}" method='post'>
 @csrf
 @method('DELETE')
-<input type='submit' value='削除' class="btn btn-denger" onclick='return confirm("削除しますか？");'>
+<input type='submit' value='削除' class="btn btn--orange" onclick='return confirm("削除しますか？");'>
 </form>
 @endif
 </div>
 </div>
+
 
 <hr>
 @if ($errors->any())
@@ -58,18 +61,20 @@
 @csrf
 <textarea name="body" cols="50" rows="10" ></textarea>
 <input type="hidden" name="dance_id" value="{{ $dance->id }}">
+<div class=comment_submit>
 <input type="submit" value="コメントする"　onclick="return confirm('送信してよろしいですか？')">
+</div>
 </div>
 
 
 <div class=comment_all>
 <div class=comment>
-<p>コメント欄</p>
+<p>コメント</p>
 </div>
 <div class=comment_user>
 @foreach ($comments as $comment)
-  <p>{{$comment->user_id}}/{{$comment->created_at}}</p>
-  <p>{!! nl2br(e($comment->body)) !!}</p>
+  <p>{{$comment->user->name}}・{{$comment->created_at}}</p>
+  <p>{!! nl2br(e($comment->body)) !!}
 @endforeach
 </div>
 </div>

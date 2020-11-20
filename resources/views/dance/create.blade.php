@@ -14,7 +14,7 @@
     @endif
     
 <div class=create>
-<form method="post" action="" enctype="multipart/form-data">
+<form method="post" action="" enctype="multipart/form-data" name="create">
 <p>*がついているものは必須項目です。</p>
 @csrf
 　
@@ -27,7 +27,7 @@
   <p>動画URLはyoutubeの共有ボタンから”https://youtu.be/”以降の文字をコピーし貼り付けてください。</p><br>
   <label for="subtitle">説明</label>
   <textarea name="subtitle" cols="50" rows="10" placeholder="説明"　value="{{ old('subtitle') }}"></textarea><br>
-  <label for="thumbnail">サムネイル画像</label>
+  <label for="thumbnail">サムネイル画像*</label>
   <input name="thumbnail" type="file"><br>
   
   <div class=button>

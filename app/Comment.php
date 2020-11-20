@@ -8,12 +8,12 @@ class Comment extends Model
 {
     protected $fillable = [ 'user_id','dance_id','body'];
 
-    public function dances()
+    public function dance()
     {
         return $this->belongsTo(Dance::class);
     }
 
-    public function users()
+    public function user()
     {
         return $this->belongsTo(User::class);
     }

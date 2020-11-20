@@ -11,6 +11,7 @@
 </div>
 
 
+<div class=dance_all>
 @foreach($dances as $dance)
 <a href="{{ route('show' , $dance->id )}}">
 <div class=box>
@@ -19,6 +20,7 @@
       <p><img src="{{ asset('/storage/'.$dance->thumbnail)}}"></p>
       </div> 
    </div>
+   <p>投稿者:{{$dance->user->name}}</p>
    <div class=genre>
       <p>ジャンル:{{$dance->genre}}</p>
    </div>
@@ -27,8 +29,13 @@
    </div>
 </div>
 </a>
-@endforeach
 
+@endforeach
+</div>
+
+<div class=paginate>
+{{ $dances->links() }}
+</div>
 
 
 

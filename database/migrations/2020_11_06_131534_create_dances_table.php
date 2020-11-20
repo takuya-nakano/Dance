@@ -21,6 +21,8 @@ class CreateDancesTable extends Migration
             $table->char('movie',40);
             $table->char('genre',20);
             $table->timestamps();
+
+            $table->foreign('user_id')->references('id')->on('users')->onDelete('cascade');
         });
     }
 

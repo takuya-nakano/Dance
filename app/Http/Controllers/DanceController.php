@@ -9,10 +9,11 @@ use Illuminate\Http\Request;
 
 class DanceController extends Controller
 {
+    const PAGINATION_LIMIT =9;
     //一覧画面について
     public function index()
     {
-          $dances = Dance::orderby('created_at','desc')->get();
+          $dances = Dance::orderby('created_at','desc')->paginate(self::PAGINATION_LIMIT);
 
           return view('dance.dance',compact('dances'));
         
@@ -39,6 +40,7 @@ class DanceController extends Controller
                 'title' => 'required|max:20',
                 'genre' => 'required',
                 'movie' => 'required',
+                'thumbnail' => 'required',
     
             ],
             [
@@ -46,6 +48,7 @@ class DanceController extends Controller
                 'title.max' => 'タイトルは20文字以下です。',
                 'genre.required' => 'ジャンルは必須です。',
                 'movie.required' => '動画URLを貼り付けてください。(youtubeの共有ボタンから”https://youtu.be/”以降の文字をコピーしてください。)',
+                'thumbnail.required' => 'サムネイル画像を選択してください。',
             ]
         );
             $dance = new Dance();
@@ -75,7 +78,13 @@ class DanceController extends Controller
 
     //編集画面
     public function edit ($id){
+
         $dance = Dance::find($id);
+
+        if( Auth::id() !== $dance->user_id ){
+            return abort(404);
+        }
+
         return view ('dance.edit',compact('dance'));
     }
 
@@ -84,16 +93,18 @@ class DanceController extends Controller
         $this->validate(
             $request,
             [
-                'title' => 'required|max:20',
+                'title' => 'required|max:30',
                 'genre' => 'required',
                 'movie' => 'required',
+                'thumbnail' => 'required',
     
             ],
             [
                 'title.required' => 'タイトルは必須です。',
-                'title.max' => 'タイトルは20文字以下です。',
+                'title.max' => 'タイトルは30文字以下です。',
                 'genre.required' => 'ジャンルは必須です。',
                 'movie.required' => '動画URLを貼り付けてください。(youtubeの共有ボタンから”https://youtu.be/”以降の文字をコピーしてください。)',
+                'thumbnail.required' => 'サムネイル画像を選択してください。',
             ]
         );
             $dance = Dance::find($id);
@@ -102,8 +113,8 @@ class DanceController extends Controller
             $dance->subtitle = $request->subtitle;
             $dance->movie = $request->movie;
             $dance->genre = $request->genre;
-            /*$filename = $request->file('thumbnail')->store('public'); // publicフォルダに保存
-            $dance->thumbnail = str_replace('public/','',$filename);// 保存するファイル名からpublicを除外*/
+            $filename = $request->file('thumbnail')->store('public'); // publicフォルダに保存
+            $dance->thumbnail = str_replace('public/','',$filename);// 保存するファイル名からpublicを除外
             
             $dance->save();// インスタンスの状態をデータベースに書き込む
             return redirect()->route('dance');
@@ -113,6 +124,11 @@ class DanceController extends Controller
     public function delete($id)
     {
             $dance = Dance::find($id);
+            
+            if( Auth::id() !== $dance->user_id ){
+                return abort(404);
+            }
+
             $dance->delete();
             return redirect()->route('dance');
     }

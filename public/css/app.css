@@ -65,7 +65,8 @@ section {
 }
 
 body {
-  margin: 0;
+  max-width: 1250px;
+  margin: auto;
   font-family: "Nunito", sans-serif;
   font-size: 0.9rem;
   font-weight: 400;
