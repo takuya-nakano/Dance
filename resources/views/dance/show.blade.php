@@ -15,7 +15,8 @@
 </div>
 
 <div class=show_box>
-    リンク:<a href="https://youtu.be/{{$dance->movie}}" target="_blank">『{{$dance->title}}』をyoutubeで開く</a></>
+    <p>投稿者:{{$dance->user->name}}</p>
+    <p>リンク:<a href="https://youtu.be/{{$dance->movie}}" target="_blank">『{{$dance->title}}』をyoutubeで開く</a></p>
 <div class=show_genre>
     <p>ジャンル:{{$dance->genre}}</p>
 </div>
@@ -25,11 +26,25 @@
     @endif
 </div>
 <div class=show_day>
-    <p>投稿日:{{$dance->created_at}}</p>
+    <p>投稿日:{{$dance->created_at->format('Y.m.d')}}</p>
 </div>
 <div class=home>
 <a href="{{ route('dance') }}" class="btn btn--orange">ホームへ戻る</a>
+<div class=iine>
+  @if($dance->is_liked_by_auth_user())
+    <a href="{{ route('dance.unlike', ['id' => $dance->id]) }}" class="btn btn-success btn-sm">♡ "YABAI"ね<span class="badge">{{ $dance->likes->count() }}</span></a>
+  @else
+    <a href="{{ route('dance.like', ['id' => $dance->id]) }}" class="btn btn-secondary btn-sm">♡ "YABAI"ね<span class="badge">{{ $dance->likes->count() }}</span></a>
+  @endif
 </div>
+
+
+
+</div>
+
+
+
+
 <div class=edit>
 @if( $dance->user_id === Auth::id() )<!--ログインユーザーと投稿者が同じなら、編集ボタンと削除ボタンを表示-->
 <a href="{{ route('dance.edit', $dance->id)  }}" class="btn btn--orange">編集画面へ</a>
@@ -46,6 +61,9 @@
 
 
 <hr>
+<div class=comment_ran>
+<p>コメント欄</p>
+</div>
 @if ($errors->any())
                 <div class="alert alert-danger">
                     <ul>
@@ -73,8 +91,16 @@
 </div>
 <div class=comment_user>
 @foreach ($comments as $comment)
-  <p>{{$comment->user->name}}・{{$comment->created_at}}</p>
-  <p>{!! nl2br(e($comment->body)) !!}
+  <p>投稿者:{{$comment->user->name}} / 投稿日:{{$comment->created_at->format('Y.m.d')}}</p>
+  <p>{!! nl2br(e($comment->body)) !!}</p>
+  @if( $comment->user_id === Auth::id() )
+  <form action="{{ route('comment.destroy' , $comment->id) }}" method='post'>
+　　　@csrf
+　　　@method('DELETE')
+　　　<input type='submit' value='削除' class="btn btn--orange" onclick='return confirm("削除しますか？");'>
+　</form>
+ @endif
+  <hr>
 @endforeach
 </div>
 </div>

@@ -3,13 +3,14 @@
 namespace App\Http\Controllers;
 
 use App\Dance;
+use App\Like;
 use Illuminate\Support\Facades\Auth;
 use Illuminate\Http\Request;
 
 
 class DanceController extends Controller
 {
-    const PAGINATION_LIMIT =9;
+    const PAGINATION_LIMIT =3;
     //一覧画面について
     public function index()
     {
@@ -22,8 +23,11 @@ class DanceController extends Controller
     //マイページについて
     public function mypage()
     {
+     
         $auth = Auth::user();
         return view('dance.mypage',['auth' => $auth]);
+
+
     }
 
     //投稿画面について
@@ -132,4 +136,37 @@ class DanceController extends Controller
             $dance->delete();
             return redirect()->route('dance');
     }
+    
+    //いいね
+    public function __construct()
+    {
+      $this->middleware(['auth', 'verified'])->only(['like', 'unlike']);
+    }
+  
+   
+    public function like($id)
+    {
+      Like::create([
+        'dance_id' => $id,
+        'user_id' => Auth::id(),
+      ]);
+  
+      session()->flash('success', 'You Liked the Reply.');
+  
+      return redirect()->back();
+    }
+  
+    
+    public function unlike($id)
+    {
+      $like = Like::where('dance_id', $id)->where('user_id', Auth::id())->first();
+      $like->delete();
+  
+      session()->flash('success', 'You Unliked the Reply.');
+  
+      return redirect()->back();
+    }
+  
+ 
+  
 }

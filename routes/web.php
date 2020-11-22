@@ -21,6 +21,7 @@ Auth::routes();
 
 Route::get('/home', 'HomeController@index')->name('home');
 Route::get('/','DanceController@index')->name('dance');
+//マイページ
 Route::group(['middleware' => 'auth'], function(){
   Route::get('/mypage/{id}','DanceController@mypage')->name('mypage');
 });
@@ -37,6 +38,8 @@ Route::delete('/show/{id}','DanceController@delete')->name('dance.destroy');//�
 //コメント
 Route::group(['middleware' => 'auth'], function(){ 
 Route::post('/comments','CommentController@store');
+Route::delete('/delete/{id}','CommentController@delete')->name('comment.destroy');
 });
 //いいね
-
+Route::get('/show/like/{id}', 'DanceController@like')->name('dance.like');
+Route::get('/show/unlike/{id}', 'DanceController@unlike')->name('dance.unlike');
