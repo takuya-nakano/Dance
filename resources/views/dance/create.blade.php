@@ -1,7 +1,8 @@
 @extends('layouts.app')
 @section('content')
+<div class=create_image>
 <div class=create_title>
-<h1>あなたのお気に入りのダンスを共有しよう！</h1>
+<h1>お気に入りのダンスを共有しよう！</h1>
 </div>
 @if ($errors->any())
 	    <div class="alert alert-danger">
@@ -25,8 +26,8 @@
   <label for="movie">動画URL*</label>
   <input name="movie"placeholder="動画URLを入力して下さい。" ><br>
   <p>動画URLはyoutubeの共有ボタンから”https://youtu.be/”以降の文字をコピーし貼り付けてください。</p><br>
-  <label for="subtitle">説明</label>
-  <textarea name="subtitle" cols="50" rows="10" placeholder="説明"　value="{{ old('subtitle') }}"></textarea><br>
+  <label for="subtitle">説明</label><br>
+  <textarea name="subtitle" cols="39" rows="10" placeholder="説明"　value="{{ old('subtitle') }}"></textarea><br>
   <label for="thumbnail">サムネイル画像*</label>
   <input name="thumbnail" type="file"><br>
   
@@ -34,6 +35,7 @@
      <input type="submit" value="シェアする"　onclick="return confirm('送信してよろしいですか？')">
   </div>
 </form>
+</div>
 </div>
 
 

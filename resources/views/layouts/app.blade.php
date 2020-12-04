@@ -63,10 +63,11 @@
                                 </a>
 
                                 <div class="dropdown-menu dropdown-menu-right" aria-labelledby="navbarDropdown">
-                                    
+                                    <div class=go_mypage>
                                     <a  class="mypagein "href="{{url('/mypage/{id}')}}">
-                                        <p>マイページへ</p>
+                                        <p class=mypage_go>マイページへ</p>
                                     </a>
+                                    </div>
                                     
                                     <a class="dropdown-item" href="{{ route('logout') }}"
                                        onclick="event.preventDefault();
@@ -90,6 +91,7 @@
             @yield('content')
         </main>
 　　　　　
+        
                 
                
          

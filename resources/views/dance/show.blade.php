@@ -1,7 +1,7 @@
 @extends('layouts.app')
 
 @section('content')
-
+<div class=show_wrapper>
 <div class=show_title_box>
 <div class=show_title>
     <h1>{{$dance->title}}</h1>
@@ -9,13 +9,13 @@
 </div>
 <div class=show_movie_box>
     <div class=show_movie>
-    <iframe width="700" height="500" src="https://www.youtube.com/embed/{{$dance->movie}}" 
+    <iframe src="https://www.youtube.com/embed/{{$dance->movie}}" 
     frameborder="0" allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture" allowfullscreen></iframe>
     </div>
 </div>
 
 <div class=show_box>
-    <p>投稿者:{{$dance->user->name}}</p>
+    <p>投稿者: {{$dance->user->name}}</p>
     <p>リンク:<a href="https://youtu.be/{{$dance->movie}}" target="_blank">『{{$dance->title}}』をyoutubeで開く</a></p>
 <div class=show_genre>
     <p>ジャンル:{{$dance->genre}}</p>
@@ -77,7 +77,7 @@
 <div class=comment_box>
 <form method="post" action="{{ url('/comments')}}">
 @csrf
-<textarea name="body" cols="50" rows="10" ></textarea>
+<textarea name="body" cols="40" rows="10" ></textarea>
 <input type="hidden" name="dance_id" value="{{ $dance->id }}">
 <div class=comment_submit>
 <input type="submit" value="コメントする"　onclick="return confirm('送信してよろしいですか？')">
@@ -90,21 +90,26 @@
 <p>コメント</p>
 </div>
 <div class=comment_user>
+  
 @foreach ($comments as $comment)
+<div class=comment_user_each>
   <p>投稿者:{{$comment->user->name}} / 投稿日:{{$comment->created_at->format('Y.m.d')}}</p>
   <p>{!! nl2br(e($comment->body)) !!}</p>
   @if( $comment->user_id === Auth::id() )
   <form action="{{ route('comment.destroy' , $comment->id) }}" method='post'>
 　　　@csrf
 　　　@method('DELETE')
+     <div class=comment_delete>
 　　　<input type='submit' value='削除' class="btn btn--orange" onclick='return confirm("削除しますか？");'>
+     </div>     
 　</form>
  @endif
+ </div>
   <hr>
 @endforeach
 </div>
 </div>
-
+</div>
 
 
 

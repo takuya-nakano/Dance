@@ -43,3 +43,6 @@ Route::delete('/delete/{id}','CommentController@delete')->name('comment.destroy'
 //いいね
 Route::get('/show/like/{id}', 'DanceController@like')->name('dance.like');
 Route::get('/show/unlike/{id}', 'DanceController@unlike')->name('dance.unlike');
+//説明
+Route::get('/manual','DanceController@manual')->name('manual');
+//ユーザーごとの投稿内容

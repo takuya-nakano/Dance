@@ -45,6 +45,7 @@
 }
 
 html {
+  height: 100%;
   font-family: sans-serif;
   line-height: 1.15;
   -webkit-text-size-adjust: 100%;
@@ -64,9 +65,9 @@ section {
   display: block;
 }
 
+
 body {
-  max-width: 1250px;
-  margin: auto;
+  height: auto;
   font-family: "Nunito", sans-serif;
   font-size: 0.9rem;
   font-weight: 400;
@@ -580,12 +581,14 @@ pre code {
 .container-lg,
 .container-md,
 .container-sm {
+  
   width: 100%;
   padding-right: 15px;
   padding-left: 15px;
   margin-right: auto;
   margin-left: auto;
 }
+
 
 @media (min-width: 576px) {
   .container-sm,
@@ -3574,6 +3577,16 @@ input[type=button].btn-block {
 
 .start{
   text-align: center;
+  color: black;
+  margin-right: 160px;
+}
+
+.go_mypage{
+  float: left;
+  margin-left: 23px; 
+}
+
+p.mypage_go{
   color: black;
 }
 
